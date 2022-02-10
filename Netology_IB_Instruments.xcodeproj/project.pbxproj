@@ -13,10 +13,14 @@
 		DA9C064227B03F1300AD1412 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA9C064027B03F1300AD1412 /* Main.storyboard */; };
 		DA9C064427B03F1400AD1412 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA9C064327B03F1400AD1412 /* Assets.xcassets */; };
 		DA9C064727B03F1400AD1412 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA9C064527B03F1400AD1412 /* LaunchScreen.storyboard */; };
+		DAB21EE827B59F6100C63E35 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB21EE427B59F6100C63E35 /* ProfileView.swift */; };
+		DAB21EE927B59F6100C63E35 /* ProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAB21EE527B59F6100C63E35 /* ProfileView.xib */; };
+		DAB21EEA27B59F6100C63E35 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAB21EE627B59F6100C63E35 /* Profile.storyboard */; };
+		DAB21EEB27B59F6100C63E35 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB21EE727B59F6100C63E35 /* ProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		DA9C063727B03F1300AD1412 /* Navigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Navigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DA9C063727B03F1300AD1412 /* Netology_IB_Instruments.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Netology_IB_Instruments.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA9C063A27B03F1300AD1412 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DA9C063C27B03F1300AD1412 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		DA9C063E27B03F1300AD1412 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -24,6 +28,10 @@
 		DA9C064327B03F1400AD1412 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DA9C064627B03F1400AD1412 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DA9C064827B03F1400AD1412 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DAB21EE427B59F6100C63E35 /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		DAB21EE527B59F6100C63E35 /* ProfileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileView.xib; sourceTree = "<group>"; };
+		DAB21EE627B59F6100C63E35 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		DAB21EE727B59F6100C63E35 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,7 +48,7 @@
 		DA9C062E27B03F1300AD1412 = {
 			isa = PBXGroup;
 			children = (
-				DA9C063927B03F1300AD1412 /* Navigation */,
+				DA9C063927B03F1300AD1412 /* Netology_IB_Instruments */,
 				DA9C063827B03F1300AD1412 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -48,31 +56,35 @@
 		DA9C063827B03F1300AD1412 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				DA9C063727B03F1300AD1412 /* Navigation.app */,
+				DA9C063727B03F1300AD1412 /* Netology_IB_Instruments.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		DA9C063927B03F1300AD1412 /* Navigation */ = {
+		DA9C063927B03F1300AD1412 /* Netology_IB_Instruments */ = {
 			isa = PBXGroup;
 			children = (
 				DA9C063A27B03F1300AD1412 /* AppDelegate.swift */,
 				DA9C063C27B03F1300AD1412 /* SceneDelegate.swift */,
 				DA9C063E27B03F1300AD1412 /* ViewController.swift */,
+				DAB21EE627B59F6100C63E35 /* Profile.storyboard */,
+				DAB21EE427B59F6100C63E35 /* ProfileView.swift */,
+				DAB21EE527B59F6100C63E35 /* ProfileView.xib */,
+				DAB21EE727B59F6100C63E35 /* ProfileViewController.swift */,
 				DA9C064027B03F1300AD1412 /* Main.storyboard */,
 				DA9C064327B03F1400AD1412 /* Assets.xcassets */,
 				DA9C064527B03F1400AD1412 /* LaunchScreen.storyboard */,
 				DA9C064827B03F1400AD1412 /* Info.plist */,
 			);
-			path = Navigation;
+			path = Netology_IB_Instruments;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		DA9C063627B03F1300AD1412 /* Navigation */ = {
+		DA9C063627B03F1300AD1412 /* Netology_IB_Instruments */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DA9C064B27B03F1400AD1412 /* Build configuration list for PBXNativeTarget "Navigation" */;
+			buildConfigurationList = DA9C064B27B03F1400AD1412 /* Build configuration list for PBXNativeTarget "Netology_IB_Instruments" */;
 			buildPhases = (
 				DA9C063327B03F1300AD1412 /* Sources */,
 				DA9C063427B03F1300AD1412 /* Frameworks */,
@@ -82,9 +94,9 @@
 			);
 			dependencies = (
 			);
-			name = Navigation;
+			name = Netology_IB_Instruments;
 			productName = Navigation;
-			productReference = DA9C063727B03F1300AD1412 /* Navigation.app */;
+			productReference = DA9C063727B03F1300AD1412 /* Netology_IB_Instruments.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -102,7 +114,7 @@
 					};
 				};
 			};
-			buildConfigurationList = DA9C063227B03F1300AD1412 /* Build configuration list for PBXProject "Navigation" */;
+			buildConfigurationList = DA9C063227B03F1300AD1412 /* Build configuration list for PBXProject "Netology_IB_Instruments" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -115,7 +127,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				DA9C063627B03F1300AD1412 /* Navigation */,
+				DA9C063627B03F1300AD1412 /* Netology_IB_Instruments */,
 			);
 		};
 /* End PBXProject section */
@@ -125,7 +137,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DAB21EE927B59F6100C63E35 /* ProfileView.xib in Resources */,
 				DA9C064727B03F1400AD1412 /* LaunchScreen.storyboard in Resources */,
+				DAB21EEA27B59F6100C63E35 /* Profile.storyboard in Resources */,
 				DA9C064427B03F1400AD1412 /* Assets.xcassets in Resources */,
 				DA9C064227B03F1300AD1412 /* Main.storyboard in Resources */,
 			);
@@ -138,7 +152,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DAB21EE827B59F6100C63E35 /* ProfileView.swift in Sources */,
 				DA9C063F27B03F1300AD1412 /* ViewController.swift in Sources */,
+				DAB21EEB27B59F6100C63E35 /* ProfileViewController.swift in Sources */,
 				DA9C063B27B03F1300AD1412 /* AppDelegate.swift in Sources */,
 				DA9C063D27B03F1300AD1412 /* SceneDelegate.swift in Sources */,
 			);
@@ -291,10 +307,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 92QWRHT67X;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Navigation/Info.plist;
+				INFOPLIST_FILE = Netology_IB_Instruments/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UILaunchStoryboardName = Profile;
+				INFOPLIST_KEY_UIMainStoryboardFile = Profile;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -302,7 +318,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = EngMXI.Navigation;
+				PRODUCT_BUNDLE_IDENTIFIER = "EngMXI.Netology-IB-Instruments";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -319,10 +335,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 92QWRHT67X;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Navigation/Info.plist;
+				INFOPLIST_FILE = Netology_IB_Instruments/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UILaunchStoryboardName = Profile;
+				INFOPLIST_KEY_UIMainStoryboardFile = Profile;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -330,7 +346,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = EngMXI.Navigation;
+				PRODUCT_BUNDLE_IDENTIFIER = "EngMXI.Netology-IB-Instruments";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -341,7 +357,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		DA9C063227B03F1300AD1412 /* Build configuration list for PBXProject "Navigation" */ = {
+		DA9C063227B03F1300AD1412 /* Build configuration list for PBXProject "Netology_IB_Instruments" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DA9C064927B03F1400AD1412 /* Debug */,
@@ -350,7 +366,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DA9C064B27B03F1400AD1412 /* Build configuration list for PBXNativeTarget "Navigation" */ = {
+		DA9C064B27B03F1400AD1412 /* Build configuration list for PBXNativeTarget "Netology_IB_Instruments" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DA9C064C27B03F1400AD1412 /* Debug */,
