@@ -11,7 +11,6 @@ struct Post {
     let title: String
 }
 
-
 class FeedViewController: UIViewController {
 
     let anyPost = Post(title: "Какой-то пост")
@@ -22,9 +21,9 @@ class FeedViewController: UIViewController {
         let postButton = UIButton(type: UIButton.ButtonType.system) //as UIButton
 
         postButton.frame = CGRect(x:90, y:100, width:150, height:50)
-        postButton.backgroundColor = UIColor.green
+        postButton.backgroundColor = UIColor.systemBlue
         postButton.setTitle("Показать пост", for: UIControl.State.normal)
-        postButton.tintColor = UIColor.black
+        postButton.tintColor = UIColor.white
 
         postButton.addTarget(self, action: #selector(self.postButtonAction), for: .touchUpInside)
 
@@ -42,6 +41,9 @@ class FeedViewController: UIViewController {
         show(postViewController, sender: self)
     }
 
+    override func viewWillLayoutSubviews() {
+        view.frame = CGRect(x: 0, y: 64, width: 320, height: 367)
+    }
     /*
     // MARK: - Navigation
 
