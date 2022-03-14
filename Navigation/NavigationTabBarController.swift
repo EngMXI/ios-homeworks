@@ -31,7 +31,7 @@ class NavigationTabBarController: UITabBarController {
         let profileNavigationController = UINavigationController(rootViewController: profileViewController)
         profileNavigationController.tabBarItem.title = "Профиль"
         profileNavigationController.tabBarItem.image = UIImage(systemName: "person")
-        profileViewController.title = "Профиль"//profileNavigationController.tabBarItem.title
+        profileViewController.title = profileNavigationController.tabBarItem.title
 
         //Инициализируем viewControllers
         self.viewControllers = [feedNavigationController, profileNavigationController]
