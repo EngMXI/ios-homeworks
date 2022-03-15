@@ -18,20 +18,41 @@ class FeedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let postButton = UIButton(type: UIButton.ButtonType.system) //as UIButton
+        let feedStackView = UIStackView(frame: CGRect(x: 0, y: 0, width: 320, height: 220))
 
-        postButton.frame = CGRect(x:90, y:100, width:150, height:50)
-        postButton.backgroundColor = UIColor.systemBlue
-        postButton.setTitle("Показать пост", for: UIControl.State.normal)
-        postButton.tintColor = UIColor.white
+        feedStackView.backgroundColor = UIColor.systemGray
+        feedStackView.axis = .vertical
+        feedStackView.spacing = 10
+        feedStackView.translatesAutoresizingMaskIntoConstraints = false
 
-        postButton.addTarget(self, action: #selector(self.postButtonAction), for: .touchUpInside)
+        self.view.addSubview(feedStackView)
 
-        postButton.autoresizingMask = [.flexibleRightMargin, .flexibleLeftMargin, .flexibleBottomMargin]
+        let firstPostButton = UIButton(type: UIButton.ButtonType.system)
 
-        self.view.addSubview(postButton)
+        firstPostButton.backgroundColor = UIColor.systemBlue
+        firstPostButton.setTitle("Показать пост", for: UIControl.State.normal)
+        firstPostButton.tintColor = UIColor.white
 
+        firstPostButton.addTarget(self, action: #selector(self.postButtonAction), for: .touchUpInside)
 
+        feedStackView.addArrangedSubview(firstPostButton)
+
+        let secondPostButton = UIButton(type: UIButton.ButtonType.system)
+
+        secondPostButton.backgroundColor = UIColor.systemBlue
+        secondPostButton.setTitle("Тоже показать пост", for: UIControl.State.normal)
+        secondPostButton.tintColor = UIColor.white
+
+        secondPostButton.addTarget(self, action: #selector(self.postButtonAction), for: .touchUpInside)
+
+        feedStackView.addArrangedSubview(secondPostButton)
+
+        NSLayoutConstraint.activate([
+            feedStackView.centerXAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerXAnchor),
+            feedStackView.centerYAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerYAnchor),
+            feedStackView.widthAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.widthAnchor),
+            feedStackView.heightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.heightAnchor, constant: -32)
+        ])
     }
     @IBAction func postButtonAction(_ sender:UIButton!)
     {
@@ -41,9 +62,6 @@ class FeedViewController: UIViewController {
         show(postViewController, sender: self)
     }
 
-    override func viewWillLayoutSubviews() {
-        view.frame = CGRect(x: 0, y: 64, width: 320, height: 367)
-    }
     /*
     // MARK: - Navigation
 
