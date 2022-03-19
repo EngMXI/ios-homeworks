@@ -139,7 +139,7 @@ class ProfileHeaderView: UIView {
             self.buttonTopConstraint?.isActive = false
             self.buttonTopConstraint =  self.statusButton.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 36)
             NSLayoutConstraint.activate([self.buttonTopConstraint].compactMap({ $0 }))
-            statusButton.setTitle("Set status", for: UIControl.State.normal)
+            statusButton.setTitle("Изменить статус", for: UIControl.State.normal)
         } else{
 
             self.buttonTopConstraint?.isActive = false
@@ -151,7 +151,7 @@ class ProfileHeaderView: UIView {
             statusLabel.text = statusText
             // Сдвигаем кнопку = прячем поле ввода
 
-            statusButton.setTitle("Show status", for: UIControl.State.normal)
+            statusButton.setTitle("Показать статус", for: UIControl.State.normal)
         }
 
         UIView.animate(withDuration: 1.0) {
