@@ -18,7 +18,7 @@ class FeedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let feedStackView = UIStackView(frame: CGRect(x: 0, y: 0, width: 320, height: 220))
+        let feedStackView = UIStackView()
 
         feedStackView.backgroundColor = UIColor.systemGray
         feedStackView.axis = .vertical
@@ -51,7 +51,9 @@ class FeedViewController: UIViewController {
             feedStackView.centerXAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerXAnchor),
             feedStackView.centerYAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerYAnchor),
             feedStackView.widthAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.widthAnchor),
-            feedStackView.heightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.heightAnchor, constant: -32)
+            feedStackView.heightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.heightAnchor, constant: -32),
+            firstPostButton.heightAnchor.constraint(equalToConstant: 50),
+           // secondPostButton.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
     @IBAction func postButtonAction(_ sender:UIButton!)
