@@ -15,6 +15,7 @@ class ProfileHeaderView: UIView {
     private let statusButton = UIButton(type: UIButton.ButtonType.system)
     private let statusTextField = UITextField()
     private var statusText: String = "Waiting for something..."
+    private var isStatusTextFieldHidden: Bool = true
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -45,6 +46,20 @@ class ProfileHeaderView: UIView {
 
         self.addSubview(statusLabel)
 
+        statusTextField.frame = CGRect(x:132, y:142, width:162, height:30)
+        statusTextField.borderStyle = UITextField.BorderStyle.roundedRect
+        statusTextField.layer.borderWidth = 1
+        statusTextField.layer.borderColor = UIColor.black.cgColor
+        statusTextField.layer.cornerRadius = 12
+        statusTextField.clipsToBounds = true
+        statusTextField.backgroundColor = UIColor.white
+        statusTextField.textColor = UIColor.black
+        statusTextField.font = UIFont.systemFont(ofSize: 15.0)
+
+        statusTextField.addTarget(self, action: #selector(self.statusTextChangedAction), for: .editingChanged)
+
+        self.addSubview(statusTextField)
+
         statusButton.frame = CGRect(x:16, y:132, width:288, height:50)
         statusButton.layer.cornerRadius = 4
 
@@ -61,20 +76,6 @@ class ProfileHeaderView: UIView {
         statusButton.addTarget(self, action: #selector(self.statusButtonPressedAction), for: .touchUpInside)
 
         self.addSubview(statusButton)
-
-        statusTextField.frame = CGRect(x:132, y:98, width:182, height:30)
-        statusTextField.borderStyle = UITextField.BorderStyle.roundedRect
-        statusTextField.layer.borderWidth = 1
-        statusTextField.layer.borderColor = UIColor.black.cgColor
-        statusTextField.layer.cornerRadius = 12
-        statusTextField.clipsToBounds = true
-        statusTextField.backgroundColor = UIColor.white
-        statusTextField.textColor = UIColor.black
-        statusTextField.font = UIFont.systemFont(ofSize: 15.0)
-
-        statusTextField.addTarget(self, action: #selector(self.statusTextChangedAction), for: .editingChanged)
-
-        self.addSubview(statusTextField)
     }
 
     required init?(coder: NSCoder) {
@@ -82,11 +83,28 @@ class ProfileHeaderView: UIView {
     }
 
     @IBAction func statusButtonPressedAction(_ sender: UIButton!) {
-        print(statusText)
-        statusLabel.text = statusText
+        if self.isStatusTextFieldHidden{
+            sender.frame = CGRect(x:16, y:182, width:288, height:50)
+            statusButton.setTitle("Set status", for: UIControl.State.normal)
+        } else{
+            // Скрываем клавиатуру
+            self.endEditing(true)
+            // Присваиваем текст свойству класса
+            statusLabel.text = statusText
+            // Сдвигаем кнопку = прячем поле ввода
+            sender.frame = CGRect(x:16, y:132, width:288, height:50)
+            statusButton.setTitle("Show status", for: UIControl.State.normal)
+        }
+
+        UIView.animate(withDuration: 2.0) {
+            self.setNeedsLayout()
+        } completion: { _ in
+            print(self.statusText)
+            self.isStatusTextFieldHidden.toggle()
+        }
     }
 
-    @IBAction func statusTextChangedAction(_ textField: UITextField) {
+    @IBAction func statusTextChangedAction(_ textField: UITextField){
         statusText = textField.text ?? ""
     }
 
@@ -97,5 +115,4 @@ class ProfileHeaderView: UIView {
         // Drawing code
     }
     */
-
 }
