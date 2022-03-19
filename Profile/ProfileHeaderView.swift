@@ -15,7 +15,6 @@ class ProfileHeaderView: UIView {
     private let statusButton = UIButton(type: UIButton.ButtonType.system)
     private let statusTextField = UITextField()
     private var statusText: String = "Waiting for something..."
-    private var isStatusTextFieldHidden: Bool = true
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -46,7 +45,7 @@ class ProfileHeaderView: UIView {
 
         self.addSubview(statusLabel)
 
-        statusTextField.frame = CGRect(x:132, y:142, width:162, height:30)
+        statusTextField.frame = CGRect(x:132, y:105, width:162, height:40)
         statusTextField.borderStyle = UITextField.BorderStyle.roundedRect
         statusTextField.layer.borderWidth = 1
         statusTextField.layer.borderColor = UIColor.black.cgColor
@@ -55,6 +54,7 @@ class ProfileHeaderView: UIView {
         statusTextField.backgroundColor = UIColor.white
         statusTextField.textColor = UIColor.black
         statusTextField.font = UIFont.systemFont(ofSize: 15.0)
+        statusTextField.isHidden = true
 
         statusTextField.addTarget(self, action: #selector(self.statusTextChangedAction), for: .editingChanged)
 
@@ -83,24 +83,24 @@ class ProfileHeaderView: UIView {
     }
 
     @IBAction func statusButtonPressedAction(_ sender: UIButton!) {
-        if self.isStatusTextFieldHidden{
-            sender.frame = CGRect(x:16, y:182, width:288, height:50)
-            statusButton.setTitle("Set status", for: UIControl.State.normal)
+        if self.statusTextField.isHidden{
+            sender.frame = CGRect(x:16, y:152, width:288, height:50)
+            sender.setTitle("Set status", for: UIControl.State.normal)
         } else{
             // Скрываем клавиатуру
             self.endEditing(true)
             // Присваиваем текст свойству класса
             statusLabel.text = statusText
-            // Сдвигаем кнопку = прячем поле ввода
+            // Сдвигаем кнопку
             sender.frame = CGRect(x:16, y:132, width:288, height:50)
-            statusButton.setTitle("Show status", for: UIControl.State.normal)
+            sender.setTitle("Show status", for: UIControl.State.normal)
         }
 
         UIView.animate(withDuration: 2.0) {
             self.setNeedsLayout()
         } completion: { _ in
             print(self.statusText)
-            self.isStatusTextFieldHidden.toggle()
+            self.statusTextField.isHidden.toggle()
         }
     }
 
