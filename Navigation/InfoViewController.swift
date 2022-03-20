@@ -11,6 +11,7 @@ class InfoViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         view.backgroundColor = UIColor.white
 
         let alertButton = UIButton(type: UIButton.ButtonType.system) //as UIButton
@@ -44,7 +45,7 @@ class InfoViewController: UIViewController {
         myAlertController.addAction(noAlertAction)
 
         self.present(myAlertController, animated: true, completion: nil)
-
+        
     }
 
     /*

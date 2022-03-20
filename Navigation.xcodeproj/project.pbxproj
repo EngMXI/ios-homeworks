@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DA02128527DD073C0006F5D7 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA02128427DD073C0006F5D7 /* ProfileHeaderView.swift */; };
+		DA037F1427E617CD00EDB210 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = DA037F1327E617CD00EDB210 /* logo.png */; };
+		DA037F1627E6182A00EDB210 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA037F1527E6182A00EDB210 /* LogInViewController.swift */; };
+		DA808E0927E741DA0085FCDD /* blue_pixel.png in Resources */ = {isa = PBXBuildFile; fileRef = DA808E0827E741DA0085FCDD /* blue_pixel.png */; };
+		DA808E0F27E794310085FCDD /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA808E0E27E794310085FCDD /* UIColorExtension.swift */; };
+		DA86C46E27DE61D3002525EB /* profilePhoto.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = DA86C46D27DE61D3002525EB /* profilePhoto.jpeg */; };
 		DA8AEB1127BD7B9600E2FAD9 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8AEB1027BD7B9600E2FAD9 /* InfoViewController.swift */; };
 		DA909F7627B8DA72008826B0 /* NavigationTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA909F7527B8DA72008826B0 /* NavigationTabBarController.swift */; };
 		DA909F7827B8FAA6008826B0 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA909F7727B8FAA6008826B0 /* FeedViewController.swift */; };
@@ -20,6 +26,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DA02128427DD073C0006F5D7 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
+		DA037F1327E617CD00EDB210 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = Img/logo.png; sourceTree = "<group>"; };
+		DA037F1527E6182A00EDB210 /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		DA808E0827E741DA0085FCDD /* blue_pixel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blue_pixel.png; path = Img/blue_pixel.png; sourceTree = "<group>"; };
+		DA808E0E27E794310085FCDD /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		DA86C46D27DE61D3002525EB /* profilePhoto.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = profilePhoto.jpeg; path = Img/profilePhoto.jpeg; sourceTree = "<group>"; };
 		DA8AEB1027BD7B9600E2FAD9 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		DA909F7527B8DA72008826B0 /* NavigationTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationTabBarController.swift; sourceTree = "<group>"; };
 		DA909F7727B8FAA6008826B0 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
@@ -45,9 +57,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DA02128327DCE6900006F5D7 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				DA808E0827E741DA0085FCDD /* blue_pixel.png */,
+				DA037F1327E617CD00EDB210 /* logo.png */,
+				DA86C46D27DE61D3002525EB /* profilePhoto.jpeg */,
+				DA037F1527E6182A00EDB210 /* LogInViewController.swift */,
+				DA808E0E27E794310085FCDD /* UIColorExtension.swift */,
+				DA02128427DD073C0006F5D7 /* ProfileHeaderView.swift */,
+				DA909F7927B8FC3E008826B0 /* ProfileViewController.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		DA9C062E27B03F1300AD1412 = {
 			isa = PBXGroup;
 			children = (
+				DA02128327DCE6900006F5D7 /* Profile */,
 				DA9C063927B03F1300AD1412 /* Navigation */,
 				DA9C063827B03F1300AD1412 /* Products */,
 			);
@@ -71,7 +98,6 @@
 				DA909F7527B8DA72008826B0 /* NavigationTabBarController.swift */,
 				DA909F7727B8FAA6008826B0 /* FeedViewController.swift */,
 				DA909F7B27B8FC99008826B0 /* PostViewController.swift */,
-				DA909F7927B8FC3E008826B0 /* ProfileViewController.swift */,
 				DA9C064327B03F1400AD1412 /* Assets.xcassets */,
 				DA9C064527B03F1400AD1412 /* LaunchScreen.storyboard */,
 				DA9C064827B03F1400AD1412 /* Info.plist */,
@@ -137,6 +163,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA808E0927E741DA0085FCDD /* blue_pixel.png in Resources */,
+				DA037F1427E617CD00EDB210 /* logo.png in Resources */,
+				DA86C46E27DE61D3002525EB /* profilePhoto.jpeg in Resources */,
 				DA9C064727B03F1400AD1412 /* LaunchScreen.storyboard in Resources */,
 				DA9C064427B03F1400AD1412 /* Assets.xcassets in Resources */,
 			);
@@ -153,9 +182,12 @@
 				DA9C063F27B03F1300AD1412 /* ViewController.swift in Sources */,
 				DA909F7C27B8FC99008826B0 /* PostViewController.swift in Sources */,
 				DA9C063B27B03F1300AD1412 /* AppDelegate.swift in Sources */,
+				DA02128527DD073C0006F5D7 /* ProfileHeaderView.swift in Sources */,
 				DA909F7827B8FAA6008826B0 /* FeedViewController.swift in Sources */,
 				DA909F7627B8DA72008826B0 /* NavigationTabBarController.swift in Sources */,
 				DA8AEB1127BD7B9600E2FAD9 /* InfoViewController.swift in Sources */,
+				DA808E0F27E794310085FCDD /* UIColorExtension.swift in Sources */,
+				DA037F1627E6182A00EDB210 /* LogInViewController.swift in Sources */,
 				DA9C063D27B03F1300AD1412 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -301,6 +333,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Navigation/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -327,6 +360,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Navigation/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
