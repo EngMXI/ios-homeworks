@@ -27,7 +27,7 @@ class NavigationTabBarController: UITabBarController {
     
 
         //Второй UINavigationController
-        let profileViewController = ProfileViewController()
+        let profileViewController = LogInViewController()
         let profileNavigationController = UINavigationController(rootViewController: profileViewController)
         profileNavigationController.tabBarItem.title = "Профиль"
         profileNavigationController.tabBarItem.image = UIImage(systemName: "person")
