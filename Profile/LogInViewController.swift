@@ -102,7 +102,6 @@ class LogInViewController: UIViewController {
             contentView.centerYAnchor.constraint(equalTo: self.scrollView.centerYAnchor),
             contentView.widthAnchor.constraint(equalTo: self.scrollView.widthAnchor),
 
-
             logoImageView.heightAnchor.constraint(equalToConstant: 100),
             logoImageView.widthAnchor.constraint(equalToConstant: 100),
             logoImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 120),

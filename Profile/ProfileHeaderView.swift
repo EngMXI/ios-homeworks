@@ -20,6 +20,8 @@ class ProfileHeaderView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
 
+        self.backgroundColor = UIColor.white
+
         profileImageView.layer.cornerRadius = 50
         profileImageView.clipsToBounds = true
         profileImageView.layer.borderWidth = 3

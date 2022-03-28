@@ -6,13 +6,13 @@
 //
 import UIKit
 
-struct Post {
+struct AnyPost {
     let title: String
 }
 
 class FeedViewController: UIViewController {
 
-    let anyPost = Post(title: "Какой-то пост")
+    let anyPost = AnyPost(title: "Какой-то пост")
 
     override func viewDidLoad() {
         super.viewDidLoad()
