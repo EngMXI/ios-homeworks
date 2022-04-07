@@ -55,7 +55,7 @@ class FeedViewController: UIViewController {
            // secondPostButton.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
-    @IBAction func postButtonAction(_ sender:UIButton!)
+    @objc func postButtonAction(_ sender:UIButton!)
     {
         print("Переход")
         let postViewController = PostViewController()

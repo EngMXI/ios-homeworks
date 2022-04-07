@@ -21,7 +21,7 @@ class PostViewController: UIViewController {
         self.navigationItem.rightBarButtonItem = newInfoBarButtonItem
 
     }
-    @IBAction func newInfoViewController(){
+    @objc func newInfoViewController(){
         let newInfoViewController = InfoViewController()
         newInfoViewController.title = "Информация"
         self.present(newInfoViewController, animated: true, completion: nil)
