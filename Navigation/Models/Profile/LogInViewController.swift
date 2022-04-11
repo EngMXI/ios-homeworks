@@ -122,9 +122,12 @@ class LogInViewController: UIViewController {
             logInButton.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -16),
             logInButton.heightAnchor.constraint(equalToConstant: 50)
         ])
+
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.hideKeyboard))
+        view.addGestureRecognizer(tap)
     }
 
-    @IBAction func logInButtonPressedAction(_ sender: UIButton!) {
+    @objc func logInButtonPressedAction(_ sender: UIButton!) {
         let profileViewController = ProfileViewController()
         let profileNavigationController = UINavigationController(rootViewController: profileViewController)
         profileNavigationController.tabBarItem.title = "Профиль"
@@ -149,17 +152,20 @@ class LogInViewController: UIViewController {
     }
 
     // Изменение отступов при появлении клавиатуры
-    @IBAction private func kbdShow(notification: NSNotification) {
+    @objc private func kbdShow(notification: NSNotification) {
         if let kbdSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             scrollView.contentInset.bottom = kbdSize.height
             scrollView.verticalScrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: kbdSize.height, right: 0)
         }
     }
-    @IBAction private func kbdHide(notification: NSNotification) {
+    @objc private func kbdHide(notification: NSNotification) {
         scrollView.contentInset.bottom = .zero
         scrollView.verticalScrollIndicatorInsets = .zero
     }
 
+    @objc func hideKeyboard() {
+        view.endEditing(true)
+    }
     /*
     // MARK: - Navigation
 

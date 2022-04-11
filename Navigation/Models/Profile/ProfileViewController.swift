@@ -16,9 +16,8 @@ class ProfileViewController: UIViewController {
         myTableView.dataSource = self
         myTableView.register(UITableViewCell.self, forCellReuseIdentifier: "DefaultCell")
         myTableView.register(PostTableViewCell.self, forCellReuseIdentifier: "PostCell")
-        myTableView.sectionHeaderHeight = 220
-       // myTableView.rowHeight = UITableView.automaticDimension
-        myTableView.estimatedRowHeight = 0
+        myTableView.rowHeight = UITableView.automaticDimension
+        myTableView.estimatedRowHeight = 650
         myTableView.translatesAutoresizingMaskIntoConstraints = false
         return myTableView
     }()
@@ -27,13 +26,28 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         self.view.addSubview(myTableView)
 
+        let tableHeaderView = ProfileHeaderView()
+        tableHeaderView.translatesAutoresizingMaskIntoConstraints = false
+        self.myTableView.tableHeaderView = tableHeaderView
+
+
+
         NSLayoutConstraint.activate([
             myTableView.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor),
             myTableView.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor),
             myTableView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
-            myTableView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor)
+            myTableView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
+
+            tableHeaderView.widthAnchor.constraint(equalTo: self.myTableView.widthAnchor),
+            tableHeaderView.heightAnchor.constraint(equalToConstant: 220),
+            tableHeaderView.centerXAnchor.constraint(equalTo: self.myTableView.centerXAnchor),
+            tableHeaderView.topAnchor.constraint(equalTo: self.myTableView.topAnchor)
 
         ])
+        self.myTableView.tableHeaderView?.layoutIfNeeded()
+
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.hideKeyboard))
+        view.addGestureRecognizer(tap)
     }
 
     /*
@@ -48,10 +62,6 @@ class ProfileViewController: UIViewController {
 }
 extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
 
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return ProfileHeaderView()
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.dataSource.count
     }
@@ -66,7 +76,16 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
 
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) ->CGFloat {
-        return 650
+/*  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) ->CGFloat {
+      return UITableView.automaticDimension
+    }*/
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        myTableView.deselectRow(at: indexPath, animated: true)
     }
+
+    @objc func hideKeyboard() {
+        view.endEditing(true)
+    }
+
 }

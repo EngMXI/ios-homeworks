@@ -135,7 +135,7 @@ class ProfileHeaderView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    @IBAction func statusButtonPressedAction(_ sender: UIButton!) {
+    @objc func statusButtonPressedAction(_ sender: UIButton!) {
         if self.statusTextField.isHidden{
             self.buttonTopConstraint?.isActive = false
             self.buttonTopConstraint =  self.statusButton.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 36)
@@ -161,7 +161,7 @@ class ProfileHeaderView: UIView {
         }
     }
 
-    @IBAction func statusTextChangedAction(_ textField: UITextField) {
+    @objc func statusTextChangedAction(_ textField: UITextField) {
         statusText = textField.text ?? ""
     }
 

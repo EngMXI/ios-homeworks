@@ -29,7 +29,7 @@ class InfoViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-    @IBAction func alertButtonAction(_ sender:UIButton!)
+    @objc func alertButtonAction(_ sender:UIButton!)
     {
         let myAlertController = UIAlertController(title: "Какое-то соообщение", message: "Здесь могла бы быть ваша реклама", preferredStyle: .alert)
 

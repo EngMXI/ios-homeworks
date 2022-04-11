@@ -11,7 +11,6 @@
 		DA037F1427E617CD00EDB210 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = DA037F1327E617CD00EDB210 /* logo.png */; };
 		DA037F1627E6182A00EDB210 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA037F1527E6182A00EDB210 /* LogInViewController.swift */; };
 		DA3BE42927E8F00C00DA7851 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3BE42827E8F00C00DA7851 /* Post.swift */; };
-		DA3BE42D27EA3E9B00DA7851 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA3BE42C27EA3E9B00DA7851 /* Assets.xcassets */; };
 		DA3BE42F27EA4FA100DA7851 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3BE42E27EA4FA100DA7851 /* PostTableViewCell.swift */; };
 		DA808E0927E741DA0085FCDD /* blue_pixel.png in Resources */ = {isa = PBXBuildFile; fileRef = DA808E0827E741DA0085FCDD /* blue_pixel.png */; };
 		DA808E0F27E794310085FCDD /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA808E0E27E794310085FCDD /* UIColorExtension.swift */; };
@@ -33,7 +32,6 @@
 		DA037F1327E617CD00EDB210 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = Img/logo.png; sourceTree = "<group>"; };
 		DA037F1527E6182A00EDB210 /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		DA3BE42827E8F00C00DA7851 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
-		DA3BE42C27EA3E9B00DA7851 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DA3BE42E27EA4FA100DA7851 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		DA808E0827E741DA0085FCDD /* blue_pixel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blue_pixel.png; path = Img/blue_pixel.png; sourceTree = "<group>"; };
 		DA808E0E27E794310085FCDD /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
@@ -75,7 +73,8 @@
 				DA909F7927B8FC3E008826B0 /* ProfileViewController.swift */,
 				DA3BE42E27EA4FA100DA7851 /* PostTableViewCell.swift */,
 			);
-			path = Profile;
+			name = Profile;
+			path = Models/Profile;
 			sourceTree = "<group>";
 		};
 		DA3BE42727E8EFAD00DA7851 /* Models */ = {
@@ -89,9 +88,6 @@
 		DA9C062E27B03F1300AD1412 = {
 			isa = PBXGroup;
 			children = (
-				DA3BE42C27EA3E9B00DA7851 /* Assets.xcassets */,
-				DA3BE42727E8EFAD00DA7851 /* Models */,
-				DA02128327DCE6900006F5D7 /* Profile */,
 				DA9C063927B03F1300AD1412 /* Navigation */,
 				DA9C063827B03F1300AD1412 /* Products */,
 			);
@@ -108,6 +104,8 @@
 		DA9C063927B03F1300AD1412 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				DA3BE42727E8EFAD00DA7851 /* Models */,
+				DA02128327DCE6900006F5D7 /* Profile */,
 				DA9C063A27B03F1300AD1412 /* AppDelegate.swift */,
 				DA9C063C27B03F1300AD1412 /* SceneDelegate.swift */,
 				DA9C063E27B03F1300AD1412 /* ViewController.swift */,
@@ -184,7 +182,6 @@
 				DA037F1427E617CD00EDB210 /* logo.png in Resources */,
 				DA86C46E27DE61D3002525EB /* profilePhoto.jpeg in Resources */,
 				DA9C064727B03F1400AD1412 /* LaunchScreen.storyboard in Resources */,
-				DA3BE42D27EA3E9B00DA7851 /* Assets.xcassets in Resources */,
 				DA9C064427B03F1400AD1412 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
