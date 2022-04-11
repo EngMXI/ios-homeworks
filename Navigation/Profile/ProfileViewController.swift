@@ -18,7 +18,7 @@ class ProfileViewController: UIViewController {
         myTableView.register(PhotosTableViewCell.self, forCellReuseIdentifier: "PhotosCell")
         myTableView.register(PostTableViewCell.self, forCellReuseIdentifier: "PostCell")
         myTableView.rowHeight = UITableView.automaticDimension
-        myTableView.estimatedRowHeight = 0
+        myTableView.estimatedRowHeight = 650
         myTableView.translatesAutoresizingMaskIntoConstraints = false
         return myTableView
     }()
@@ -41,6 +41,9 @@ class ProfileViewController: UIViewController {
             tableHeaderView.heightAnchor.constraint(equalToConstant: 220)
         ])
         self.myTableView.tableHeaderView?.layoutIfNeeded()
+
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.hideKeyboard))
+        view.addGestureRecognizer(tap)
     }
 
     /*
@@ -86,9 +89,9 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource, Pho
             return cell
         }
     }
-   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) ->CGFloat {
-        if indexPath.section == 1 {
-            return 650
+/*   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) ->CGFloat {
+        if indexPath.section == 0 {
+            return 0
         } else {
             let screenWidth = UIScreen.main.bounds.width
             let screenHeight = UIScreen.main.bounds.height
@@ -98,10 +101,19 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource, Pho
                 return (screenHeight-48)/4 + 66
             }
         }
+    }*/
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        myTableView.deselectRow(at: indexPath, animated: true)
+    }
+
+    @objc func hideKeyboard() {
+        view.endEditing(true)
     }
 
     func photosButtonPressedAction() {
         let newPhotosViewController = PhotosViewController()
         self.navigationController?.pushViewController(newPhotosViewController, animated: true)
     }
+
 }

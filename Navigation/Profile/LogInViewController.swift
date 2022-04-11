@@ -122,6 +122,9 @@ class LogInViewController: UIViewController {
             logInButton.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -16),
             logInButton.heightAnchor.constraint(equalToConstant: 50)
         ])
+
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.hideKeyboard))
+        view.addGestureRecognizer(tap)
     }
 
     @objc func logInButtonPressedAction(_ sender: UIButton!) {
@@ -158,6 +161,10 @@ class LogInViewController: UIViewController {
     @objc private func kbdHide(notification: NSNotification) {
         scrollView.contentInset.bottom = .zero
         scrollView.verticalScrollIndicatorInsets = .zero
+    }
+
+    @objc func hideKeyboard() {
+        view.endEditing(true)
     }
 
     /*

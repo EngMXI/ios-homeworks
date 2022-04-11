@@ -113,32 +113,36 @@ class PhotosTableViewCell: UITableViewCell {
             photosLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 12),
             photosLabel.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 12),
             photosLabel.widthAnchor.constraint(equalToConstant: 150),
-            photosLabel.heightAnchor.constraint(equalToConstant: 30),
+            photosLabel.bottomAnchor.constraint(equalTo: firstImageView.topAnchor, constant: -12),
 
             photosButton.centerYAnchor.constraint(equalTo: photosLabel.centerYAnchor),
             photosButton.rightAnchor.constraint(equalTo: self.contentView.rightAnchor, constant: -12),
             photosButton.widthAnchor.constraint(equalToConstant: 30),
-            photosButton.heightAnchor.constraint(equalToConstant: 30),
+            photosButton.bottomAnchor.constraint(equalTo: firstImageView.topAnchor, constant: -12),
 
             firstImageView.topAnchor.constraint(equalTo: photosLabel.bottomAnchor, constant: 12),
             firstImageView.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 12),
             firstImageView.heightAnchor.constraint(equalToConstant: imageDimensions),
             firstImageView.widthAnchor.constraint(equalToConstant: imageDimensions),
+            firstImageView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -12),
 
             secondImageView.topAnchor.constraint(equalTo: photosLabel.bottomAnchor, constant: 12),
             secondImageView.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: imageDimensions + 20),
             secondImageView.heightAnchor.constraint(equalToConstant: imageDimensions),
             secondImageView.widthAnchor.constraint(equalToConstant: imageDimensions),
+            secondImageView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -12),
 
             thirdImageView.topAnchor.constraint(equalTo: photosLabel.bottomAnchor, constant: 12),
             thirdImageView.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: imageDimensions * 2 + 28),
             thirdImageView.heightAnchor.constraint(equalToConstant: imageDimensions),
             thirdImageView.widthAnchor.constraint(equalToConstant: imageDimensions),
+            thirdImageView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -12),
 
             fourthImageView.topAnchor.constraint(equalTo: photosLabel.bottomAnchor, constant: 12),
             fourthImageView.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: imageDimensions * 3 + 36),
             fourthImageView.heightAnchor.constraint(equalToConstant: imageDimensions),
-            fourthImageView.widthAnchor.constraint(equalToConstant: imageDimensions)
+            fourthImageView.widthAnchor.constraint(equalToConstant: imageDimensions),
+            fourthImageView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -12),
         ])
     }
 }
