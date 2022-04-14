@@ -11,6 +11,10 @@ class NavigationTabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
 
         view.backgroundColor = UIColor.white
 
@@ -20,24 +24,19 @@ class NavigationTabBarController: UITabBarController {
         feedNavigationController.tabBarItem.title = "Лента"
         feedNavigationController.tabBarItem.image = UIImage(systemName: "doc.plaintext")
         feedViewController.title = feedNavigationController.tabBarItem.title
-
+    
 
         //Второй UINavigationController
-        let profileViewController = ProfileViewController()
+        let profileViewController = LogInViewController()
         let profileNavigationController = UINavigationController(rootViewController: profileViewController)
         profileNavigationController.tabBarItem.title = "Профиль"
         profileNavigationController.tabBarItem.image = UIImage(systemName: "person")
         profileViewController.title = profileNavigationController.tabBarItem.title
 
         //Инициализируем viewControllers
-        viewControllers = [feedNavigationController, profileNavigationController]
+        self.viewControllers = [feedNavigationController, profileNavigationController]
+
     }
-
-
-
-
-
-
 
     /*
     // MARK: - Navigation
