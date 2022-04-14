@@ -11,6 +11,7 @@ class InfoViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         view.backgroundColor = UIColor.white
 
         let alertButton = UIButton(type: UIButton.ButtonType.system) //as UIButton
@@ -28,7 +29,7 @@ class InfoViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-    @IBAction func alertButtonAction(_ sender:UIButton!)
+    @objc func alertButtonAction(_ sender:UIButton!)
     {
         let myAlertController = UIAlertController(title: "Какое-то соообщение", message: "Здесь могла бы быть ваша реклама", preferredStyle: .alert)
 
@@ -44,7 +45,7 @@ class InfoViewController: UIViewController {
         myAlertController.addAction(noAlertAction)
 
         self.present(myAlertController, animated: true, completion: nil)
-
+        
     }
 
     /*
