@@ -23,27 +23,40 @@ class ProfileViewController: UIViewController {
         return myTableView
     }()
 
+    private lazy var tableHeaderView = ProfileHeaderView()
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
         self.view.addSubview(myTableView)
 
-        let tableHeaderView = ProfileHeaderView()
         tableHeaderView.translatesAutoresizingMaskIntoConstraints = false
         self.myTableView.tableHeaderView = tableHeaderView
+        tableHeaderView.delegate = self
 
         NSLayoutConstraint.activate([
+
             myTableView.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor),
             myTableView.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor),
             myTableView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
             myTableView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
 
             tableHeaderView.widthAnchor.constraint(equalTo: self.myTableView.widthAnchor),
-            tableHeaderView.heightAnchor.constraint(equalToConstant: 220)
+            tableHeaderView.heightAnchor.constraint(equalToConstant: 220),
+            tableHeaderView.leftAnchor.constraint(equalTo: self.myTableView.leftAnchor),
+            tableHeaderView.topAnchor.constraint(equalTo: self.myTableView.topAnchor)
         ])
         self.myTableView.tableHeaderView?.layoutIfNeeded()
 
+        // Скрываем клавиатуру при нажатии в любом месте
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.hideKeyboard))
         view.addGestureRecognizer(tap)
+
+        // Выполняем анимацию при нажатии на аватар
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(profileImageTapped(tapGestureRecognizer:)))
+        tableHeaderView.profileImageView.isUserInteractionEnabled = true
+        tableHeaderView.profileImageView.addGestureRecognizer(tapGestureRecognizer)
+
     }
 
     /*
@@ -56,7 +69,7 @@ class ProfileViewController: UIViewController {
     */
 
 }
-extension ProfileViewController: UITableViewDelegate, UITableViewDataSource, PhotosTableViewCellDelegate {
+extension ProfileViewController: UITableViewDelegate, UITableViewDataSource, PhotosTableViewCellDelegate, ProfileHeaderViewDelegate {
 
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
@@ -89,19 +102,6 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource, Pho
             return cell
         }
     }
-/*   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) ->CGFloat {
-        if indexPath.section == 0 {
-            return 0
-        } else {
-            let screenWidth = UIScreen.main.bounds.width
-            let screenHeight = UIScreen.main.bounds.height
-            if screenHeight > screenWidth {
-                return (screenWidth-48)/4 + 66
-            } else {
-                return (screenHeight-48)/4 + 66
-            }
-        }
-    }*/
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         myTableView.deselectRow(at: indexPath, animated: true)
@@ -110,10 +110,32 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource, Pho
     @objc func hideKeyboard() {
         view.endEditing(true)
     }
-
+    // Обработка нажатия стрелки вправо в ячейке с фото
     func photosButtonPressedAction() {
         let newPhotosViewController = PhotosViewController()
         self.navigationController?.pushViewController(newPhotosViewController, animated: true)
     }
+    // Обработка тап по изображению
+    @objc func profileImageTapped(tapGestureRecognizer: UITapGestureRecognizer)
+    {
+        hideKeyboard()
+        UIView.animate(withDuration: 0.5){
+            self.tableHeaderView.profileImageLarge(viewController: self)
+            self.myTableView.isScrollEnabled = false
+        }
+        UIView.animate(withDuration: 0.3){
+            self.tableHeaderView.closeButtonShow()
+        }
 
+    }
+    // Обработка нажатия кнопки с иконкой крестика
+    func closeButtonPressedAction() {
+        UIView.animate(withDuration: 0.3){
+            self.tableHeaderView.closeButtonHide()
+        }
+        UIView.animate(withDuration: 0.5){
+            self.tableHeaderView.profileImageSmall()
+            self.myTableView.isScrollEnabled = true
+        }
+    }
 }
