@@ -116,26 +116,28 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource, Pho
         self.navigationController?.pushViewController(newPhotosViewController, animated: true)
     }
     // Обработка тап по изображению
-    @objc func profileImageTapped(tapGestureRecognizer: UITapGestureRecognizer)
-    {
+    @objc func profileImageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
         hideKeyboard()
-        UIView.animate(withDuration: 0.5){
+        UIView.animate(withDuration: 0.5, animations: {
             self.tableHeaderView.profileImageLarge(viewController: self)
-            self.myTableView.isScrollEnabled = false
-        }
-        UIView.animate(withDuration: 0.3){
-            self.tableHeaderView.closeButtonShow()
-        }
-
+            self.tableHeaderView.layoutIfNeeded()
+        }, completion: {_ in UIView.animate(withDuration: 0.3){
+                self.tableHeaderView.closeButtonShow()
+                self.tableHeaderView.layoutIfNeeded()
+            }
+        })
+        self.myTableView.isScrollEnabled = false
     }
     // Обработка нажатия кнопки с иконкой крестика
     func closeButtonPressedAction() {
-        UIView.animate(withDuration: 0.3){
+        UIView.animate(withDuration: 0.3, animations: {
             self.tableHeaderView.closeButtonHide()
-        }
-        UIView.animate(withDuration: 0.5){
+            self.tableHeaderView.layoutIfNeeded()
+        }, completion: {_ in UIView.animate(withDuration: 0.5){
             self.tableHeaderView.profileImageSmall()
-            self.myTableView.isScrollEnabled = true
+            self.tableHeaderView.layoutIfNeeded()
         }
+        })
+        self.myTableView.isScrollEnabled = true
     }
 }
