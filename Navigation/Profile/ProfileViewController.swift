@@ -122,9 +122,9 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource, Pho
             self.tableHeaderView.profileImageLarge(viewController: self)
             self.tableHeaderView.layoutIfNeeded()
         }, completion: {_ in UIView.animate(withDuration: 0.3){
-                self.tableHeaderView.closeButtonShow()
-                self.tableHeaderView.layoutIfNeeded()
-            }
+            self.tableHeaderView.closeButtonShow()
+            self.tableHeaderView.layoutIfNeeded()
+        }
         })
         self.myTableView.isScrollEnabled = false
     }
