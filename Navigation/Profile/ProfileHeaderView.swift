@@ -78,7 +78,7 @@ class ProfileHeaderView: UIView {
         statusTextField.textColor = UIColor.black
         statusTextField.font = UIFont.systemFont(ofSize: 15.0)
         statusTextField.isHidden = true
-
+        statusTextField.addTarget(self, action: #selector(self.statusTextFieldTapped), for: .editingDidBegin)
         statusTextField.addTarget(self, action: #selector(self.statusTextChangedAction), for: .editingChanged)
         statusTextField.translatesAutoresizingMaskIntoConstraints = false
         return statusTextField
@@ -116,7 +116,7 @@ class ProfileHeaderView: UIView {
         closeButton.setImage(UIImage(systemName: "xmark"), for: UIControl.State.normal)
         closeButton.layer.cornerRadius = 25
         closeButton.tintColor = UIColor.white
-        closeButton.backgroundColor = .systemRed
+        closeButton.backgroundColor = .systemGray
         closeButton.alpha = 0
         closeButton.addTarget(self, action: #selector(self.closeButtonPressedAction), for: .touchUpInside)
         closeButton.translatesAutoresizingMaskIntoConstraints = false
@@ -203,31 +203,41 @@ class ProfileHeaderView: UIView {
     @objc func statusButtonPressedAction(_ sender: UIButton!) {
         if self.statusTextField.isHidden{
             self.buttonTopConstraint?.isActive = false
-            self.buttonTopConstraint =  self.statusButton.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: profileImageDimensions + 36)
+            self.buttonTopConstraint =  self.statusButton.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor,
+                                                                               constant: profileImageDimensions + 36)
             NSLayoutConstraint.activate([self.buttonTopConstraint].compactMap({ $0 }))
             statusButton.setTitle("Изменить статус", for: UIControl.State.normal)
+            UIView.animate(withDuration: 1.0) {
+                self.layoutIfNeeded()
+            } completion: { _ in
+                print(self.statusText)
+                self.statusTextField.isHidden.toggle()
+            }
         } else{
-            self.buttonTopConstraint?.isActive = false
-            self.buttonTopConstraint =  self.statusButton.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: profileImageDimensions + 16)
-            NSLayoutConstraint.activate([self.buttonTopConstraint].compactMap({ $0 }))
-            // Скрываем клавиатуру
-            self.endEditing(true)
-            // Присваиваем текст свойству класса
-            statusLabel.text = statusText
-            // Сдвигаем кнопку = прячем поле ввода
-            statusButton.setTitle("Показать статус", for: UIControl.State.normal)
-        }
 
-        UIView.animate(withDuration: 1.0) {
-            self.layoutIfNeeded()
-        } completion: { _ in
-            print(self.statusText)
-            self.statusTextField.isHidden.toggle()
+            if statusTextField.text == "" {
+                UIView.animate(withDuration: 0.5){
+                    self.statusTextField.backgroundColor = .systemPink
+                }
+            }
+            else {
+                self.buttonTopConstraint?.isActive = false
+                self.buttonTopConstraint =  self.statusButton.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor,
+                                                                                   constant: profileImageDimensions + 16)
+                NSLayoutConstraint.activate([self.buttonTopConstraint].compactMap({ $0 }))
+                // Скрываем клавиатуру
+                self.endEditing(true)
+                // Присваиваем текст свойству класса
+                statusLabel.text = statusText
+                statusButton.setTitle("Показать статус", for: UIControl.State.normal)
+                UIView.animate(withDuration: 1.0) {
+                    self.layoutIfNeeded()
+                } completion: { _ in
+                    print(self.statusText)
+                    self.statusTextField.isHidden.toggle()
+                }
+            }
         }
-    }
-
-    @objc func statusTextChangedAction(_ textField: UITextField) {
-        statusText = textField.text ?? ""
     }
 
     func profileImageLarge(viewController: UIViewController){
@@ -292,12 +302,24 @@ class ProfileHeaderView: UIView {
         delegate?.closeButtonPressedAction()
     }
 
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    @objc func statusTextChangedAction(_ textField: UITextField) {
+        self.statusText = textField.text ?? ""
+        UIView.animate(withDuration: 0.5){
+            self.statusTextField.backgroundColor = .white
+        }
     }
-    */
+    
+    @objc func statusTextFieldTapped(_ sender: UITextField!) {
+        UIView.animate(withDuration: 0.5){
+            self.statusTextField.backgroundColor = .white
+        }
+    }
+    /*
+     // Only override draw() if you perform custom drawing.
+     // An empty implementation adversely affects performance during animation.
+     override func draw(_ rect: CGRect) {
+     // Drawing code
+     }
+     */
 
 }

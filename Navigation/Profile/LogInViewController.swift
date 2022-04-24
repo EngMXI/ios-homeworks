@@ -9,6 +9,9 @@ import UIKit
 
 class LogInViewController: UIViewController {
 
+    private let standartLogIn = "login"
+    private let standartPassword = "password"
+
     private let colorSet: Set<UIColor> = [UIColor.init(hexString: "#4885CC")]
     private let accentColor = UIColor.init(hexString: "4885CC")
 
@@ -54,6 +57,7 @@ class LogInViewController: UIViewController {
         textFieldSettings(logInTextField)
         logInTextField.placeholder = "E-mail или телефон"
         logInTextField.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
+        logInTextField.addTarget(self, action: #selector(self.logInTextFieldTapped), for: .editingDidBegin)
         return logInTextField
     }()
 
@@ -62,6 +66,7 @@ class LogInViewController: UIViewController {
         textFieldSettings(passwordTextField)
         passwordTextField.placeholder = "Пароль"
         passwordTextField.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+        passwordTextField.addTarget(self, action: #selector(self.passwordTextFieldTapped), for: .editingDidBegin)
         passwordTextField.isSecureTextEntry = true
         return passwordTextField
     }()
@@ -78,6 +83,17 @@ class LogInViewController: UIViewController {
         return logInButton
     }()
 
+    private lazy var messageLabel: UILabel = {
+        let messageLabel = UILabel()
+        messageLabel.text = "Пароль слишком короток"
+        messageLabel.textColor = .black
+        messageLabel.textAlignment = .center
+        // messageLabel.layer.borderColor = UIColor.black.cgColor
+        messageLabel.isHidden = true
+        messageLabel.translatesAutoresizingMaskIntoConstraints  = false
+        return messageLabel
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -90,6 +106,7 @@ class LogInViewController: UIViewController {
         self.contentView.addSubview(logInTextField)
         self.contentView.addSubview(passwordTextField)
         self.contentView.addSubview(logInButton)
+        self.contentView.addSubview(messageLabel)
 
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: self.view.topAnchor),
@@ -120,22 +137,54 @@ class LogInViewController: UIViewController {
             logInButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 16),
             logInButton.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 16),
             logInButton.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -16),
-            logInButton.heightAnchor.constraint(equalToConstant: 50)
+            logInButton.heightAnchor.constraint(equalToConstant: 50),
+
+            messageLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 16),
+            messageLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -16),
+            messageLabel.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor),
+            messageLabel.bottomAnchor.constraint(equalTo: logInButton.topAnchor)
         ])
 
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.hideKeyboard))
         view.addGestureRecognizer(tap)
+
     }
 
     @objc func logInButtonPressedAction(_ sender: UIButton!) {
-        let profileViewController = ProfileViewController()
-        let profileNavigationController = UINavigationController(rootViewController: profileViewController)
-        profileNavigationController.tabBarItem.title = "Профиль"
-        profileNavigationController.tabBarItem.image = UIImage(systemName: "person")
-        profileViewController.title = profileNavigationController.tabBarItem.title
-        self.tabBarController?.viewControllers?[1] = profileNavigationController
+        if self.logInTextField.text == "" || self.passwordTextField.text == "" {
+            if self.logInTextField.text == "" {
+                UIView.animate(withDuration: 0.5){
+                    self.logInTextField.backgroundColor = .systemPink
+                }
+            }
+            if self.passwordTextField.text == "" {
+                UIView.animate(withDuration: 0.5){
+                    self.passwordTextField.backgroundColor = .systemPink
+                }
+            }
+        }else {
+            if passwordTextField.text?.count != nil && (passwordTextField.text?.count)! < 8 {
+                self.messageLabel.isHidden = false
+            }
+            if self.logInTextField.text == self.standartLogIn && self.passwordTextField.text == self.standartPassword {
+                let profileViewController = ProfileViewController()
+                let profileNavigationController = UINavigationController(rootViewController: profileViewController)
+                profileNavigationController.tabBarItem.title = "Профиль"
+                profileNavigationController.tabBarItem.image = UIImage(systemName: "person")
+                profileViewController.title = profileNavigationController.tabBarItem.title
+                self.tabBarController?.viewControllers?[1] = profileNavigationController
+            }else {
+                let myAlertController = UIAlertController(title: "Предупреждение", message: "Логин и(или) пароль неверны", preferredStyle: .alert)
+                let okAlertAction = UIAlertAction(title: "Ok", style: .default) { (action) -> Void in
+                    //Здесь можно что-то сделать
+                }
+                myAlertController.addAction(okAlertAction)
+                self.present(myAlertController, animated: true, completion: nil)
+            }
+        }
     }
 
+    //Код из презентации к лекции
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // подписаться на уведомления
@@ -167,14 +216,26 @@ class LogInViewController: UIViewController {
         view.endEditing(true)
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @objc func logInTextFieldTapped(_ sender: UITextField!) {
+        UIView.animate(withDuration: 0.5){
+            self.logInTextField.backgroundColor = .systemGray6
+        }
     }
-    */
+
+    @objc func passwordTextFieldTapped(_ sender: UITextField!) {
+        UIView.animate(withDuration: 0.5){
+            self.passwordTextField.backgroundColor = .systemGray6
+            self.messageLabel.isHidden = true
+        }
+    }
+    /*
+     // MARK: - Navigation
+
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
 
 }
