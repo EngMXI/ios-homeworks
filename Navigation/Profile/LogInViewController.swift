@@ -9,8 +9,8 @@ import UIKit
 
 class LogInViewController: UIViewController {
 
-    private let standartLogIn = "login"
-    private let standartPassword = "password"
+    private let standartLogIn = "q"//"login"
+    private let standartPassword = "q"//"password"
 
     private let colorSet: Set<UIColor> = [UIColor.init(hexString: "#4885CC")]
     private let accentColor = UIColor.init(hexString: "4885CC")

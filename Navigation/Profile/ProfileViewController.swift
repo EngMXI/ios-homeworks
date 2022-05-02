@@ -27,13 +27,15 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         self.view.addSubview(myTableView)
         
         tableHeaderView.translatesAutoresizingMaskIntoConstraints = false
         self.myTableView.tableHeaderView = tableHeaderView
         tableHeaderView.delegate = self
-        
+
+
+
         NSLayoutConstraint.activate([
             
             myTableView.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor),
@@ -115,13 +117,12 @@ extension ProfileViewController: UITableViewDelegate,
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        if indexPath.section == 1 {
+        if indexPath.section == 1 && self.myTableView.isScrollEnabled {
             return true
         } else {
             return false
         }
-
-    }
+}
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if indexPath.section == 1 {
@@ -137,13 +138,18 @@ extension ProfileViewController: UITableViewDelegate,
     }
     // Обработка нажатия стрелки вправо в ячейке с фото
     func photosButtonPressedAction() {
-        let newPhotosViewController = PhotosViewController()
-        self.navigationController?.pushViewController(newPhotosViewController, animated: true)
+        if self.myTableView.isScrollEnabled {
+            let newPhotosViewController = PhotosViewController()
+            self.navigationController?.pushViewController(newPhotosViewController, animated: true)
+        }
     }
     // Обработка тап по изображению
     @objc func profileImageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
         hideKeyboard()
         UIView.animate(withDuration: 0.5, animations: {
+            self.navigationController?.setNavigationBarHidden(true, animated: true)
+            self.tabBarController?.tabBar.isHidden = true
+            UIView.transition(with: self.tabBarController!.view, duration: 0, options: .transitionCrossDissolve, animations: nil)
             self.tableHeaderView.profileImageLarge(viewController: self)
             self.tableHeaderView.layoutIfNeeded()
         }, completion: {_ in UIView.animate(withDuration: 0.3){
@@ -160,6 +166,9 @@ extension ProfileViewController: UITableViewDelegate,
             self.tableHeaderView.layoutIfNeeded()
         }, completion: {_ in UIView.animate(withDuration: 0.5){
             self.tableHeaderView.profileImageSmall()
+            self.navigationController?.setNavigationBarHidden(false, animated: true)
+            self.tabBarController?.tabBar.isHidden = false
+            UIView.transition(with: self.tabBarController!.view, duration: 0, options: .transitionCrossDissolve, animations: nil)
             self.tableHeaderView.layoutIfNeeded()
         }
         })
@@ -179,21 +188,23 @@ extension ProfileViewController: UITableViewDelegate,
     }
     
     @objc func addViews(_ gesture: UITapGestureRecognizer) {
-        guard let indexPath = self.myTableView.indexPathForRow(at: gesture.location(in: self.myTableView)) else {
-            print("Error: indexPath")
-            return
-        }
-        // Можно увеличить кол-во просмотров до показа детальной информации
-        // self.postDataSource[indexPath.row].views += 1
-        let detailPostView = PostDetailViewController()
-        detailPostView.postDataSource = postDataSource[indexPath.row]
-        self.present(detailPostView, animated: true, completion: {
-            // Но лучше увеличим кол-во просмотров после просмотра детальной информации
-            self.postDataSource[indexPath.row].views += 1
-            // Ячейку обновляем только здесь в любом случае
-            if let cell = self.myTableView.cellForRow(at: indexPath) as? PostTableViewCell {
-                cell.setup(with: self.postDataSource[indexPath.row])
+        if self.myTableView.isScrollEnabled {
+            guard let indexPath = self.myTableView.indexPathForRow(at: gesture.location(in: self.myTableView)) else {
+                print("Error: indexPath")
+                return
             }
-        })
+            // Можно увеличить кол-во просмотров до показа детальной информации
+            self.postDataSource[indexPath.row].views += 1
+            let detailPostView = PostDetailViewController()
+            detailPostView.postDataSource = postDataSource[indexPath.row]
+            self.present(detailPostView, animated: true, completion: {
+                // Но лучше увеличим кол-во просмотров после просмотра детальной информации
+                //self.postDataSource[indexPath.row].views += 1
+                // Ячейку обновляем только здесь в любом случае
+                if let cell = self.myTableView.cellForRow(at: indexPath) as? PostTableViewCell {
+                    cell.setup(with: self.postDataSource[indexPath.row])
+                }
+            })
+        }
     }
 }

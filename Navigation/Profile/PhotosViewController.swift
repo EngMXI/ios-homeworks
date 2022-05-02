@@ -56,15 +56,15 @@ class PhotosViewController: UIViewController {
         let imageHeight = UIScreen.main.bounds.height > UIScreen.main.bounds.width ?  UIScreen.main.bounds.width :  UIScreen.main.bounds.height
         
         NSLayoutConstraint.activate([
-            photosCollectionView.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor, constant: 8),
-            photosCollectionView.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor, constant: -8),
-            photosCollectionView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 8),
-            photosCollectionView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -8),
+            photosCollectionView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 8),
+            photosCollectionView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -8),
+            photosCollectionView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 8),
+            photosCollectionView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -8),
             
-            alphaView.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor),
-            alphaView.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor),
-            alphaView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
-            alphaView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
+            alphaView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
+            alphaView.rightAnchor.constraint(equalTo: self.view.rightAnchor),
+            alphaView.topAnchor.constraint(equalTo: self.view.topAnchor),
+            alphaView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
             
             photoView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
             photoView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
@@ -120,7 +120,11 @@ extension PhotosViewController: UICollectionViewDataSource, UICollectionViewDele
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! PhotosCollectionViewCell
         self.photoView.photoImageView.image = cell.photosImageView.image
+
         UIView.animate(withDuration: 0.5, animations: {
+            self.navigationController?.setNavigationBarHidden(true, animated: true)
+            self.tabBarController?.tabBar.isHidden = true
+            UIView.transition(with: self.tabBarController!.view, duration: 0, options: .transitionCrossDissolve, animations: nil)
             self.photoView.alpha = 1
             self.alphaView.alpha = 0.85
             self.photoView.layoutIfNeeded()
@@ -128,6 +132,7 @@ extension PhotosViewController: UICollectionViewDataSource, UICollectionViewDele
         }, completion: {_ in UIView.animate(withDuration: 0.3){
             self.photoView.showCloseButton()
             self.photoView.layoutIfNeeded()
+
         }
         })
     }
@@ -139,6 +144,9 @@ extension PhotosViewController: UICollectionViewDataSource, UICollectionViewDele
         }, completion: {_ in UIView.animate(withDuration: 0.5){
             self.photoView.alpha = 0
             self.alphaView.alpha = 0
+            self.navigationController?.setNavigationBarHidden(false, animated: true)
+            self.tabBarController?.tabBar.isHidden = false
+            UIView.transition(with: self.tabBarController!.view, duration: 0, options: .transitionCrossDissolve, animations: nil)
             self.photoView.layoutIfNeeded()
             self.alphaView.layoutIfNeeded()
         }

@@ -60,7 +60,8 @@ class ProfileHeaderView: UIView {
         statusButton.tintColor = UIColor.white
         statusButton.backgroundColor = UIColor.systemBlue
 
-        statusButton.setTitle("Показать статус", for: UIControl.State.normal)
+        //statusButton.setTitle("Показать статус", for: UIControl.State.normal)
+        statusButton.setTitle("Изменить статус", for: UIControl.State.normal)
 
         statusButton.addTarget(self, action: #selector(self.statusButtonPressedAction), for: .touchUpInside)
         statusButton.translatesAutoresizingMaskIntoConstraints = false
@@ -77,7 +78,7 @@ class ProfileHeaderView: UIView {
         statusTextField.backgroundColor = UIColor.white
         statusTextField.textColor = UIColor.black
         statusTextField.font = UIFont.systemFont(ofSize: 15.0)
-        statusTextField.isHidden = true
+        //statusTextField.isHidden = true
         statusTextField.addTarget(self, action: #selector(self.statusTextFieldTapped), for: .editingDidBegin)
         statusTextField.addTarget(self, action: #selector(self.statusTextChangedAction), for: .editingChanged)
         statusTextField.translatesAutoresizingMaskIntoConstraints = false
@@ -161,7 +162,7 @@ class ProfileHeaderView: UIView {
         self.profileImageViewHeightConstraint = self.profileImageView.heightAnchor.constraint(equalToConstant: profileImageDimensions)
         self.profileImageViewWidthConstraint = self.profileImageView.widthAnchor.constraint(equalToConstant: profileImageDimensions)
 
-        self.buttonTopConstraint = self.statusButton.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: profileImageDimensions + 16)
+        self.buttonTopConstraint = self.statusButton.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: profileImageDimensions + 32)
         self.buttonTopConstraint?.priority = UILayoutPriority(999)
 
         NSLayoutConstraint.activate([
@@ -184,11 +185,12 @@ class ProfileHeaderView: UIView {
             userNameLabel.leftAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leftAnchor, constant: profileImageDimensions + 16),
             userNameLabel.heightAnchor.constraint(equalToConstant: 20),
 
-            statusLabel.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: profileImageDimensions - 18),
+            //statusLabel.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: profileImageDimensions - 18),
+            statusLabel.bottomAnchor.constraint(equalTo: self.statusButton.topAnchor, constant: -50),
             statusLabel.leftAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leftAnchor, constant: profileImageDimensions + 16),
             statusLabel.heightAnchor.constraint(equalToConstant: 20),
 
-            statusTextField.topAnchor.constraint(equalTo: statusLabel.bottomAnchor, constant: 7),
+            statusTextField.topAnchor.constraint(equalTo: statusLabel.bottomAnchor, constant: 0),
             statusTextField.leftAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leftAnchor, constant: profileImageDimensions + 16),
             statusTextField.rightAnchor.constraint(equalTo: self.safeAreaLayoutGuide.rightAnchor, constant: -16),
             statusTextField.heightAnchor.constraint(equalToConstant: 40),
@@ -201,43 +203,19 @@ class ProfileHeaderView: UIView {
     }
 
     @objc func statusButtonPressedAction(_ sender: UIButton!) {
-        if self.statusTextField.isHidden{
-            self.buttonTopConstraint?.isActive = false
-            self.buttonTopConstraint =  self.statusButton.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor,
-                                                                               constant: profileImageDimensions + 36)
-            NSLayoutConstraint.activate([self.buttonTopConstraint].compactMap({ $0 }))
-            statusButton.setTitle("Изменить статус", for: UIControl.State.normal)
-            UIView.animate(withDuration: 1.0) {
-                self.layoutIfNeeded()
-            } completion: { _ in
-                print(self.statusText)
-                self.statusTextField.isHidden.toggle()
-            }
-        } else{
-
-            if statusTextField.text == "" {
-                UIView.animate(withDuration: 0.5){
-                    self.statusTextField.backgroundColor = .systemPink
-                }
-            }
-            else {
-                self.buttonTopConstraint?.isActive = false
-                self.buttonTopConstraint =  self.statusButton.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor,
-                                                                                   constant: profileImageDimensions + 16)
-                NSLayoutConstraint.activate([self.buttonTopConstraint].compactMap({ $0 }))
-                // Скрываем клавиатуру
-                self.endEditing(true)
-                // Присваиваем текст свойству класса
-                statusLabel.text = statusText
-                statusButton.setTitle("Показать статус", for: UIControl.State.normal)
-                UIView.animate(withDuration: 1.0) {
-                    self.layoutIfNeeded()
-                } completion: { _ in
-                    print(self.statusText)
-                    self.statusTextField.isHidden.toggle()
-                }
+        if statusTextField.text == "" {
+            UIView.animate(withDuration: 0.5){
+                self.statusTextField.backgroundColor = .systemPink
             }
         }
+        else {
+            // Скрываем клавиатуру
+            self.endEditing(true)
+            // Присваиваем текст свойству класса
+            statusLabel.text = statusText
+            print(self.statusText)
+        }
+
     }
 
     func profileImageLarge(viewController: UIViewController){
@@ -259,10 +237,10 @@ class ProfileHeaderView: UIView {
                                      self.profileImageViewHeightConstraint,
                                      self.profileImageViewWidthConstraint,
 
-                                     alphaView.leftAnchor.constraint(equalTo: viewController.view.safeAreaLayoutGuide.leftAnchor),
-                                     alphaView.rightAnchor.constraint(equalTo: viewController.view.safeAreaLayoutGuide.rightAnchor),
-                                     alphaView.topAnchor.constraint(equalTo: viewController.view.safeAreaLayoutGuide.topAnchor),
-                                     alphaView.bottomAnchor.constraint(equalTo: viewController.view.safeAreaLayoutGuide.bottomAnchor)
+                                     alphaView.leftAnchor.constraint(equalTo: viewController.view.leftAnchor),
+                                     alphaView.rightAnchor.constraint(equalTo: viewController.view.rightAnchor),
+                                     alphaView.topAnchor.constraint(equalTo: viewController.view.topAnchor),
+                                     alphaView.bottomAnchor.constraint(equalTo: viewController.view.bottomAnchor)
                                     ].compactMap({ $0 }))
 
         self.alphaView.alpha = 0.85
